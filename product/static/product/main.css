@@ -1,0 +1,133 @@
+body{
+	background-color: rgba(77,88,109,1);
+	/*font-family: Oswald, sans-serif;*/
+	/*font-weight: 50;*/
+}
+.header-top{
+  margin-bottom: 0px;
+  background: rgb(83,105,121);
+  background: linear-gradient(0deg, rgba(83,105,121,1) 0%, rgba(77,88,109,1) 100%);
+  padding: 15px;
+}
+#header-text{
+  font-size: 45px;
+  color: #ffffff;
+  font-family: Oswald, serif;
+  margin-bottom: 0;
+}
+#header-text-a:hover{
+  text-decoration: none;
+}
+.navbar{
+	background-color: rgba(77,88,109,1);
+  padding: 0;
+  box-shadow: 0 5px 15px;
+  z-index: 1;
+}
+.box{
+	margin: 20px 0px;
+}
+.game-img{
+	height: 240px;
+	object-fit: cover;
+}
+.product-info{
+	width: 50%;
+	height: 300px;
+}
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px gray;
+  transition: 0.2s ease;
+}
+.content-section:hover{
+  box-shadow: 0 4px 10px gray;
+}
+.btn-outline-secondary{
+  font-family: FontAwesome;
+  border-color: #536979;
+  color: #536979;
+}
+
+.btn-outline-secondary:hover{
+  background-color: #536979 !important;
+  /*border-color: black !important;*/
+  /*color: black !important;*/
+}
+.btn-outline-secondary:active,
+.btn-outline-secondary:visited,
+.btn-outline-secondary:focus {
+  /*background-color: #536979 !important;*/
+  /*border-color: #4D586D !important;*/
+  box-shadow: 0 0 0 0.2rem rgba(77, 88, 109, 0.25);
+}
+.btn-secondary{
+  background-color: #536979 !important;
+}
+.btn-secondary:hover{
+  background-color: #4d586d !important;
+}
+.allcomments{
+  width: 100%;
+}
+.comment{
+  border-top: 1px solid #e3e3e3;
+  display: flex;
+  padding: 15px;
+  position: relative;
+}
+.comment-top-text{
+  margin: 10px 10px 15px 10px;
+}
+.comment-img{
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+.comment-main{
+  margin-left: 15px;
+  width: 100%;
+}
+.comment-date{
+  color: #888888;
+  font-size: 12px;
+  margin: 0;
+}
+.comment-add{
+  margin: 8px 0 0 15px;
+  display: flex;
+  /*justify-content: center;*/
+  align-items: center;
+}
+.comment-author{
+  font-size: 18px;
+}
+.comment-text{
+  white-space: pre-line;
+  font-size: 16px;
+}
+.comment-info-top{
+  display: flex;
+  justify-content: space-between;
+}
+.comment-info-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+.comment-edit-btns{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+.comment-edit-btns a {
+  color: #4d586d;
+  /*font-size: 16px;*/
+}
+.comment-edit-btns a:hover {
+  color: #1e2027;
+  /*font-size: 16px;*/
+}
