@@ -1,0 +1,27 @@
+{% extends "./base.html" %}
+{% block content %}
+<div class="mt-5 content-section">
+    {% if items %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Description</th>
+                <th scope="col">Seller</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr onmousedown="window.location='#';">
+                <td>{{ item.description }}</td>
+                <td>{{ item.seller }}</td>
+                <th scope="row">{{ item.price }}$</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h2>There are no items for this game. Items will be added soon.</h2>
+    {% endif %}
+</div>
+{% endblock %}

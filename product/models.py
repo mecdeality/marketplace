@@ -11,9 +11,10 @@ class Game(models.Model):
 
 class Item(models.Model):
     description = models.CharField(max_length=200)
+    detailed_description = models.TextField(default='')
     seller = models.CharField(max_length=100)
     price = models.IntegerField()
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.game
+        return self.game.name
