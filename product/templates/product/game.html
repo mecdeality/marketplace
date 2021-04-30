@@ -14,7 +14,7 @@
             {% for item in items %}
             <tr onmousedown="window.location='#';">
                 <td>{{ item.description }}</td>
-                <td>{{ item.seller }}</td>
+                <td><a style="color:black;" href="{% url 'sellers-item' item.game.id item.seller %}">{{ item.seller }}</a></td>
                 <th scope="row">{{ item.price }}$</th>
             </tr>
             {% endfor %}

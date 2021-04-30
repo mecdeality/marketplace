@@ -36,6 +36,12 @@
                 <a class="nav-item nav-link" href="#">List of Users</a>
             </div>
             <div id="nav-right" class="navbar-nav">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="search" placeholder="{{ search_text }}">
+                    </div>
+                </form>
                 <a class="nav-item nav-link" href="/profile/">Profile</a>
                 <a class="nav-item nav-link" href="/logout/">Logout</a>
             </div>
