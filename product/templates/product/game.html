@@ -12,7 +12,7 @@
         </thead>
         <tbody>
             {% for item in items %}
-            <tr onmousedown="window.location='#';">
+            <tr onmousedown="window.location='{% url 'item-main' item.id %}';">
                 <td>{{ item.description }}</td>
                 <td><a style="color:black;" href="{% url 'sellers-item' item.game.id item.seller %}">{{ item.seller }}</a></td>
                 <th scope="row">{{ item.price }}$</th>

@@ -1,6 +1,7 @@
 {% extends "./base.html" %}
 {% block content %}
 	<div class="d-flex flex-wrap">
+		{% if games %}
 		{% for game in games %}
 			<div class="col-lg-4 mb-4 mb-lg-0 d-none d-lg-block box">
 				<a href="{% url 'game-items' game.id %}">
@@ -14,5 +15,8 @@
 				</a>
 			</div>
 		{% endfor %}
+		{% else %}
+		<h2 style="color:white;" class="m-5">No results!</h2>
+		{% endif %}
 	</div>
 {% endblock %}

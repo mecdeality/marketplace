@@ -22,7 +22,6 @@ def main(request):
 def game_items(request, game_id):
     game = Game.objects.filter(id=game_id).first()
     if request.method == 'POST':
-        # return HttpResponse('dadw')
         search_string = request.POST.get('search', '')
         items = Item.objects.all().filter(game=game_id, description__contains=search_string)
     else:
@@ -43,3 +42,11 @@ def sellers_item(request, game_id, seller_name):
         'items': Item.objects.all().filter(game=game_id, seller=seller_name)
     }
     return render(request, 'product/game.html', context)
+
+
+def item_main(request, item_id):
+    context = {
+        'title': 'Item',
+        'item': Item.objects.filter(id=item_id).first()
+    }
+    return render(request, 'product/item_main.html', context)

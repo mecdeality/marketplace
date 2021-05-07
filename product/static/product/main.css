@@ -32,8 +32,8 @@ body{
 	object-fit: cover;
 }
 .product-info{
+background-color:black;
 	width: 50%;
-	height: 300px;
 }
 .content-section {
   background: #ffffff;
