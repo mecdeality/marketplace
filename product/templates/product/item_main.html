@@ -7,7 +7,7 @@
             <small class="text-muted">Description:</small>
             <p>{{ item.detailed_description }}</p>
             <h4>{{ item.price }}$</h4>
-            <button type="button" class="btn btn-success w-100 my-4 buy-btn">Buy</button>
+            <a href="{% url 'item-order' item.id %}" type="button" class="btn btn-success w-100 my-4 buy-btn">Buy</a>
         </div>
     </div>
     <div class="content-section">

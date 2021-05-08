@@ -1,4 +1,12 @@
 {% extends "./base.html" %}
+{% block search %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-group">
+            <input type="text" class="form-control" name="search" placeholder="{{ search_text }}">
+        </div>
+    </form>
+{% endblock %}
 {% block content %}
 	<div class="d-flex flex-wrap">
 		{% if games %}
