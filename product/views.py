@@ -1,12 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Game, Item
+from django.contrib import messages
 from django.http import HttpResponse
 
 
 def main(request):
-    if request.method == 'POST':
-        # return HttpResponse('dadw')
-        search_string = request.POST.get('search', '')
+    if request.method == 'GET':
+        search_string = request.GET.get('search', '')
         games = Game.objects.all().filter(name__contains=search_string)
     else:
         games = Game.objects.all()
@@ -21,8 +21,8 @@ def main(request):
 
 def game_items(request, game_id):
     game = Game.objects.filter(id=game_id).first()
-    if request.method == 'POST':
-        search_string = request.POST.get('search', '')
+    if request.method == 'GET':
+        search_string = request.GET.get('search', '')
         items = Item.objects.all().filter(game=game_id, description__contains=search_string, sold=False)
     else:
         items = Item.objects.all().filter(game=game_id)
@@ -57,4 +57,21 @@ def item_order(request, item_id):
         'title': 'Order',
         'item': Item.objects.filter(id=item_id).first()
     }
-    return render(request, 'product/item_order.html', context)
+    if request.method == 'POST':
+        payment_code = request.POST.get('payment_code', '')
+        if payment_code == '123':
+            item = Item.objects.filter(id=item_id).first()
+            item.sold = True
+            item.save()
+            messages.success(request, 'Your payment has been processed successfully. '
+                                      'Please check your purchased list.')
+            return redirect('product-main')
+        else:
+            messages.warning(request, 'Oops! Something went wrong with payment. Please try to check out again.')
+            return redirect('product-main')
+    else:
+        return render(request, 'product/item_order.html', context)
+
+
+
+

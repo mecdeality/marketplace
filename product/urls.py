@@ -7,5 +7,4 @@ urlpatterns = [
     path('<int:game_id>/<str:seller_name>', views.sellers_item, name='sellers-item'),
     path('item/<int:item_id>', views.item_main, name='item-main'),
     path('item/<int:item_id>/order', views.item_order, name='item-order')
-
 ]
