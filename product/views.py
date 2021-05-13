@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Game, Item
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
 
@@ -52,6 +53,7 @@ def item_main(request, item_id):
     return render(request, 'product/item_main.html', context)
 
 
+@login_required
 def item_order(request, item_id):
     context = {
         'title': 'Order',
@@ -62,6 +64,7 @@ def item_order(request, item_id):
         if payment_code == '123':
             item = Item.objects.filter(id=item_id).first()
             item.sold = True
+            item.owner = request.user
             item.save()
             messages.success(request, 'Your payment has been processed successfully. '
                                       'Please check your purchased list.')
@@ -73,5 +76,10 @@ def item_order(request, item_id):
         return render(request, 'product/item_order.html', context)
 
 
-
-
+def purchases(request):
+    items = Item.objects.all().filter(owner=request.user)
+    context = {
+        'title': 'My List',
+        'items': items
+    }
+    return render(request, 'product/purchases.html', context)

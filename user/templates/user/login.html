@@ -1,0 +1,20 @@
+{% extends "product/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="d-flex justify-content-center mt-4">
+        <div class="content-section w-50">
+            <form method="post">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Log in</button>
+                </div>
+            </form>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Need an account? <a class="ml-2" href="{% url 'user-registration' %}">Click here!</a>
+                </small>
+            </div>
+        </div>
+    </div>
+{% endblock %}
