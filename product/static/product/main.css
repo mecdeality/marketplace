@@ -134,3 +134,6 @@ background-color:black;
 #item-seller{
   color: black;
 }
+[hover-color]:hover {
+  color: var(--hover-color);
+}

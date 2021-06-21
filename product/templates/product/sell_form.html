@@ -1,0 +1,46 @@
+{% extends "./base.html" %}
+{% block content %}
+<div class="container w-75 mt-4 content-section">
+    <p class="text-muted">Please provide more accurate information.</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="description">Description of an account</label>
+            <input type="text" class="form-control" name="description" id="description" placeholder="Account info" required>
+        </div>
+        <div class="form-group">
+            <label for="detailed">Detailed description</label>
+            <textarea class="form-control" name="detailed" id="detailed" rows="3" required></textarea>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="price">Price</label>
+                <input type="number" class="form-control" name="price" id="price" placeholder="Price" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="game">Game</label>
+                <select class="form-control" id="game" name="game" required>
+                    <option selected>Choose...</option>
+                    {% for game in games %}
+                    <option value="{{game.id}}">{{game.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="item_login">Account login</label>
+                <input type="text" class="form-control" name="item_login" id="item_login" placeholder="Login" required>
+                <small class="text-muted">* Account data stored in a safe place, so no need to worry =)</small>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="item_password">Account password</label>
+                <input type="text" class="form-control" name="item_password" id="item_password" placeholder="Password" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-info" type="submit">Publish</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

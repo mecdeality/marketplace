@@ -1,0 +1,23 @@
+{% extends "product/base.html" %}
+{% block content %}
+	<div class="container w-50 mt-4 content-section">
+        <form class="mt-3" method="post">
+            {% csrf_token %}
+            <h5 class="text-center">Do you really want to sell?</h5>
+            <p>   Sellers who deliver exceptional customer service may qualify for our site Top Rated Seller program. We support Top Rated Sellers with exclusive benefits that can help boost your listings visibility, improve conversion, save money, and protect you from abusive buying behavior and events outside your control.</p>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Agree with website policies.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                    Yes, I want to get text updates and reminders about my reservations.
+                </label>
+            </div>
+            <div class="my-2"><button type="submit" class="btn btn-primary w-100">Send request!</button></div>
+        </form>
+    </div>
+{% endblock %}

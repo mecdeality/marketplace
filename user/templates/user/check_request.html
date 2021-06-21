@@ -1,0 +1,41 @@
+{% extends "product/base.html" %}
+{% block content %}
+    <div class="container w-75 mt-5">
+        <div class="mt-5 content-section">
+            {% if users %}
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">User</th>
+                        <th scope="col">Mail</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Button</th>
+                    </tr>
+                </thead>
+                <tbodyЮ
+                    {% for user in users %}
+                    <tr onmousedown="window.location='#';">
+                        <td>{{ user.user.id }}</td>
+                        <td>{{ user.user.username }}</td>
+                        <td>{{ user.user.email }}</td>
+                        <td scope="row">Pending...</td>
+                        <td>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input name="user_id" value="{{ user.user.id }}" type="hidden">
+                                <button name="accept" type="submit" class="btn btn-success" style="color:white">Accept</button>
+                                <button name="deny" type="submit" class="btn btn-danger" style="color:white">Deny</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+                {% else %}
+                    <h2 class="m-2">Nobody has submitted a request yet!</h2>
+                {% endif %}
+            </table>
+
+        </div>
+    </div>
+{% endblock %}

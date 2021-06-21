@@ -1,0 +1,18 @@
+{% extends "./base.html" %}
+{% block content %}
+<div class="container w-50 mt-4 content-section">
+    <form class="mt-3" method="get">
+        <h5 class="text-center">Are you sure?</h5>
+        <p>Are you sure you want to delete the game as well as all its items?</p>
+        <ul class="mb-4">
+            <li>{{game.name}}</li>
+            <li class="mt-2"><a href="{{game.picture_url.url}}"><small class="text-muted">{{game.picture_url.url}}</small></a></li>
+        </ul>
+        <div class="d-flex justify-content-around mb-3">
+            <button type="submit" class="btn btn-danger col-md-5" name="yes">Yes, I'm sure</button>
+            <button type="submit" class="btn btn-primary col-md-5" name="no">No, take me back</button>
+        </div>
+        <small class="text-muted">*Deleting the game is an irreversible process, which means we can't revert even if you perform it by accident.</small>
+    </form>
+</div>
+{% endblock %}

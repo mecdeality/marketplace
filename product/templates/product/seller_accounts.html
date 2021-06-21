@@ -1,0 +1,39 @@
+{% extends "./base.html" %}
+{% block content %}
+<div class="mt-4 content-section">
+    {% if items %}
+    <h4>My accounts:</h4>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Item ID</th>
+                <th scope="col">Description</th>
+                {{ if.item.sold }}
+                <th scope="col"></th>
+                {{ endif }}
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td><a class="text-dark" href="{% url 'item-main' item.id %}">{{ item.description }}</a></td>
+                <td><b>
+                    {% if item.sold %}
+                    Sold!
+                    {% endif %}
+                </b></td>
+                <td>
+                    <a href="{% url 'acc-edit' item.id %}" class="badge badge-info">Edit</a>
+                    <a href="{% url 'acc-delete' item.id %}" class="badge badge-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h2>You don't have any purchased items yet.</h2>
+    {% endif %}
+</div>
+{% endblock %}

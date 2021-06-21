@@ -7,19 +7,46 @@
     </form>
 {% endblock %}
 {% block content %}
+	<style>
+		.game{
+			position: relative;
+		}
+		.action{
+			position: absolute;
+			z-index:1;
+			right:5px;
+			top:5px;
+		}
+		.hide {
+			display: none;
+		}
+		.badge{
+			text-shadow: 2px 2px 4px #000000;
+		}
+		.game:hover > .hide {
+			display:block;
+		}
+	</style>
 	<div class="d-flex flex-wrap">
 		{% if games %}
 		{% for game in games %}
 			<div class="col-lg-4 mb-4 mb-lg-0 d-none d-lg-block box">
-				<a href="{% url 'game-items' game.id %}">
-					<div class="card content-section">
+
+					<div class="card content-section game">
+						{% if user.is_superuser %}
+						<div class="action hide">
+							<a href="{% url 'game-edit' game.id %}" class="badge badge-info"><i class="fa fa-pencil"></i></a>
+                    		<a href="{% url 'game-delete' game.id %}" class="badge badge-danger"><i class="fa fa-close"></i></a>
+						</div>
+						{% endif %}
+						<a href="{% url 'game-items' game.id %}" class="card">
 						<img class="game-img"
-							src="{{ game.picture_url }}"
+							src="{{ game.picture_url.url }}"
 							class="card-img-top img-thumbnail"
 							alt="{{ game.name }}"
-						/>
+						/></a>
 					</div>
-				</a>
+
 			</div>
 		{% endfor %}
 		{% else %}

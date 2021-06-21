@@ -3,11 +3,13 @@
     <div class="d-flex justify-content-center mt-4">
         <div class="product-info content-section">
             <h2 style="font-family: Oswald;">Product info</h2>
-            <small class="text-muted">Seller: </small><a style="color:black;" href="{% url 'sellers-item' item.game.id item.seller %}"><small>{{item.seller}}</small></a><br>
+            <small class="text-muted">Seller: </small><a style="color:black;" href="{% url 'sellers-item' item.game.id item.seller.user.username %}"><small>{{item.seller.user.username}}</small></a><br>
             <small class="text-muted">Description:</small>
             <p>{{ item.detailed_description }}</p>
             <h4>{{ item.price }}$</h4>
+            {% if item.sold == False %}
             <a href="{% url 'item-order' item.id %}" type="button" class="btn btn-success w-100 my-4 buy-btn">Buy</a>
+            {% endif %}
         </div>
     </div>
     <div class="content-section">
@@ -15,51 +17,45 @@
             <h5 style="font-family: Oswald;">Seller feedback: </h5>
         </div>
         <div class="allcomments">
+            <form method="post">
+            {% csrf_token%}
             <div class="comment">
-                <img src="https://media.nature.com/w300/magazine-assets/d41586-018-07881-1/d41586-018-07881-1_16369438.jpg" class="rounded-circle comment-img">
+                <img src="https://bit.ly/3f6vqmd" class="rounded-circle comment-img">
                 <div class="comment-add input-group mb-3">
-                    <textarea placeholder="Write comment..." class="form-control custom-control" rows="1" style="resize:none"></textarea>
-                    <input type="hidden" id="USER ID" name="###" value="LUBOI VALUE">
+                    <textarea placeholder="Write comment..." name="comment" class="form-control custom-control" rows="1" style="resize:none" required></textarea>
+<!--                    <input type="hidden" id="USER ID" name="###" value="LUBOI VALUE">-->
                     <div class="input-group-append">
-                        <input type="submit" id="" name="" class="btn btn-outline-secondary" value="&#xf1d8;">
+                        <input type="submit" id="" name="add" class="btn btn-outline-secondary" value="&#xf1d8;">
                         <!--                                <button class="btn btn-outline-secondary" type="button"><i class="fa fa-send"></i></button>-->
                     </div>
                 </div>
             </div>
+            </form>
+            {% if comments %}
+            {% for comment in comments %}
             <div class="comment">
-                <img src="ava.jpg" class="rounded-circle comment-img">
+                <img src="https://bit.ly/3f6vqmd" class="rounded-circle comment-img">
                 <div class="comment-main">
                     <div class="comment-info-top">
-                        <strong class="comment-author">user3</strong>
-                        <p class="comment-date">June 27, 2020, 2:59 p.m.</p>
+                        <strong class="comment-author">{{comment.user.username}}</strong>
+                        <p class="comment-date">{{ comment.timestamp }}</p>
                     </div>
                     <div class="comment-info-bottom">
-                        <p class="comment-text">I received at the right time, and it's looks prefect.</p>
+                        <p class="comment-text">{{comment.content}}</p>
                     </div>
-                    <div class="comment-edit-btns">
-                        <!--                                <a  href="/post/2/update"><i class="fa fa-thumbs-up"></i></a>-->
-                        <a  href="/post/2/update"><i class="fa fa-pencil-square"></i></a>
-                        <a  href="/post/2/delete"><i class="fa fa-window-close"></i></a>
-                    </div>
+<!--                    <div class="comment-edit-btns">-->
+<!--                        &lt;!&ndash;                                <a  href="/post/2/update"><i class="fa fa-thumbs-up"></i></a>&ndash;&gt;-->
+<!--                        <a  href="/post/2/update"><i class="fa fa-pencil-square"></i></a>-->
+<!--                        <a  href="/post/2/delete"><i class="fa fa-window-close"></i></a>-->
+<!--                    </div>-->
                 </div>
             </div>
+            {% endfor %}
+            {% else %}
             <div class="comment">
-                <img src="https://media.nature.com/w300/magazine-assets/d41586-018-07881-1/d41586-018-07881-1_16369438.jpg" class="rounded-circle comment-img">
-                <div class="comment-main">
-                    <div class="comment-info-top">
-                        <strong class="comment-author">user4</strong>
-                        <p class="comment-date">June 27, 2020, 2:59 p.m.</p>
-                    </div>
-                    <div class="comment-info-bottom">
-                        <p class="comment-text">As described, good quality, arrived quickly, recommended seller</p>
-                    </div>
-                    <div class="comment-edit-btns">
-                        <!--                                <a  href="/post/2/update"><i class="fa fa-thumbs-up"></i></a>-->
-                        <a  href="/post/2/update"><i class="fa fa-pencil-square"></i></a>
-                        <a  href="/post/2/delete"><i class="fa fa-window-close"></i></a>
-                    </div>
-                </div>
+                <p class="ml-5 text-muted" > Be quick to leave the first feedback.</p>
             </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
